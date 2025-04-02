@@ -1,18 +1,13 @@
-# In-depth Analysis of Densest Subgraph Discovery in a Unified Framework
+# FBAD
 
 This repository contains C++ codes and datasets for the paper:
 
-> In-depth Analysis of Densest Subgraph Discovery in a Unified Framework
+> A Gradient Projecting-based Approach for Efficient Densest Subgraph Discovery on Large Directed Graphs
 
 ## Introduction
 
-In this paper, we condcut an in-depth study on sequential densest subgraph discovery (DSD) algorithms. We first propose a unified framework with three modules, namely *graph reduction*, *vertex weight update* ( `VWU`) and *candidate subgraph extract and verify* (`CSV`), which capture the core ideas of all existing algorithms.
-
-Given a graph $G$ and an error threshold $\epsilon$, *graph reduction* aims to locate the DS in a small subgraph;  `VWU` aims to update vertex weights over $T$ iterations; and  `CSV` extracts a candidate subgraph based on vertex weights and verifies if it satisfies the $\epsilon$ error requirement. 
-
-Under this framework, we systematically compare 12 and 7 representative algorithms (including both exact and approximation algorithms) for undirected and directed graphs, respectively.
-
-We conduct comprehensive experiments on both real-world and synthetic datasets and provide an in-depth analysis.
+In this paper, we study the problem of the directed densest subgraph (DDS) problem on directed graph. Presenting both practically and
+theoretically efficient DDS discovery algorithms by employing projecting FISTA and a few optimizing techniques, we have performed extensive experimental evaluation on 15 real-world large graphs and the results demonstrate the high efficiency of our algorithms.
 
 ## Environment
 
@@ -20,36 +15,32 @@ The codes of our in-depth study are implemented and tested under the following d
 
 - Hardware : Intel(R) Xeon(R) Gold 6338 CPU @ 2.00GHz and 512GB of memory.
 - Operation System : Ubuntu 20.04.5 LTS (GNU/Linux 5.15.0-101-generic x86_64)
+
 ## Datasets
 
-
-We use twelve real datasets from different domains including 6 undirected graphs and 6 directed graphs, which are available on the Stanford Network Analysis Platform, Laboratory of Web Algorithmics, Network Repository, and Konect.
-
-
-Undirected:
+We use 15 real-world datasets from different domains, which are mainly downloaded from the [Stanford Network Analysis Platform](http://snap.stanford.edu/data/) and [Networks](http://konect.cc/networks/).
 
 
-| Dataset         | Category      | $\mid V \mid$   | $\mid E \mid$     | Download link                                                  |
-| --------------- | ------------- | -------: | --------: |----------------------------------------------------------------|
-| Econ-beacxc (EB) | Economic      | 507     | 42,176    | [Link](https://networkrepository.com/econ-beacxc.php)          |
-| DBLP (DP)       | Collaboration | 317,080 | 1,049,866 | [Link](https://snap.stanford.edu/data/com-DBLP.html)           |
-| Youtube (YT)    | Multimedia | 3,223,589 | 9,375,374 | [Link](https://snap.stanford.edu/data/com-Youtube.html)        |
-|LiveJournal (LJ)|Social|4,036,538|34,681,189| [Link](https://snap.stanford.edu/data/com-LiveJournal.html)    |
-|WebBase (WB)|Web|118,142,155|881,868,060| [Link](https://networkrepository.com/web-webbase-2001-all.php) |
-|Friendster (FS)|Social|124,836,180|1,806,067,135| [Link](https://snap.stanford.edu/data/com-Friendster.html)     |
 
+### Table: Datasets used in our experiments.
 
-Directed:
-
-| Dataset          | Category      |  $\mid V \mid$   | $\mid E \mid$    | Download link                                                |
-|------------------| ------------- | -------: | --------: |--------------------------------------------------------------|
-| Openflights (OF) |Infrastructure|2,939|30,501| [Link](http://konect.cc/networks/opsahl-openflights/)        |
-| Advogato (AD)    |Social|6,541|51,127| [Link](http://konect.cc/networks/advogato/)                  |
-| Amazon (AM)      |E-commerce|403,394|3,387,388| [Link](http://konect.cc/networks/amazon0601/)                |
-| Bidu-zhishi (BA) |Hyperlink|2,141,300|17,794,839| [Link](http://konect.cc/networks/zhishi-baidu-internallink/) |
-| Wiki-en (WE)     |Hyperlink|13,593,032|437,217,424| [Link](http://konect.cc/networks/wikipedia_link_en/)         |
-| SK-2005 (SK)     |Web|50,636,154|1,949,412,601| [Link](https://law.di.unimi.it/webdata/sk-2005/)             |
-
+| Dataset | Category | \|V\| | \|E\| |
+|---------|----------|-------|-------|
+| Maayan-Lake (ML) | Foodweb | 183 | 2,494 |
+| Moreno-Oz (MO) | Social | 217 | 2,672 |
+| Traffic-Control (TC) | Infrastructure | 1,126 | 2,615 |
+| Maayan-Figeys (MF) | Metabolic | 2,239 | 6,452 |
+| OpenFlights (OF) | Infrastructure | 2,939 | 30,501 |
+| Advogato (AD) | Social | 6,541 | 51,127 |
+| Email-EU (EU) | Comments | 265,214 | 420,045 |
+| Amazon (AM) | E-commerce | 403,394 | 3,387,388 |
+| WikiTalk (WT) | Communication | 2,394,385 | 5,021,410 |
+| Amazon-ratings (AR) | E-commerce | 3,376,962 | 5,838,041 |
+| Baidu-Zhishi (BA) | Hyperlink | 2,141,300 | 17,794,839 |
+| Wikipedia-Link (WL) | Hyperlink | 759,923 | 20,546,603 |
+| EW-2013 (EW) | Social | 4,206,785 | 101,355,853 |
+| Wiki-En (WE) | Hyperlink | 13,593,032 | 437,217,424 |
+| SK-2005 (SK) | Web | 50,636,154 | 1,949,412,601 |
 
 
 ## How to Run the Codes
