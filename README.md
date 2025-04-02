@@ -71,28 +71,19 @@ In terms of our work, one could run the code in the following format:
 ```
 
 In these parameters, the meaningful ones in our work are:
-- `-t` : type of graph, `d` for directed and `u` for undirected. Here we set it to `d`.
+- `-t` : type of graph, `d` for directed and `u` for undirected. Here we always set it to `d`.
 - `-a` : algorithm type, `a` for approximate and `e` for exact. Here we set it to `a`.
 - `-eps` : the tolerance of the algorithm, which is set to `0` in exact algorithms and different values in approximate algorithms. Here we set it to `0.1`.
-- `-stats` : whether to output the detailed statistics of the algorithm. Here we set it to `t`.
+- `-stats` : whether to output the detailed statistics of the algorithm. Here we set it to `t`. To disable it, please set it to `f`.
 - `-it` : the fixed iteration number. Here we set it to `10`.
 - `-wshrink` : whether to use the shrinking technique. Here we set it to `t`.
 - `-initwcore` : whether to use the initial w-core density technique. Here we set it to `t`.
 - `-adam` : whether to use the dynamic learning rate technique. Here we set it to `t`.
 - `-path` : the path of the input graph. You should set it to the path of your graph file. 
 
-### C. Data Download
+### C. Experiment
 
-
-You can download the datasets from the following Google drive link:
-
-
-
-
-
-### D. Experimentation
-
-First you should put the graph file into a folder and set the dataset_path and output_path in ./experiments/experiments.py to the path of your graph file and the output folder, respectively. 
+First, you should put the graph file into a folder and set the dataset_path and output_path in ./experiments/experiments.py to the path of your graph file and the output folder, respectively. 
 
 Then you can run the experiments for FBAD by using the following command:
 
