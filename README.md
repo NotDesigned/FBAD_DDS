@@ -79,78 +79,20 @@ For example, you could run `core-exact` on DP in the following command:
 
 ```
 
-There are a lot of options for you to conduct a thorough evalution among different algorithms:
+In terms of our work, one could run the code in the following format:
 
-|Parameters| Value            |Description|
-|:---------------|:-----------------|:------------|
-|-path| ---              |path to the dataset|
-|-t| `u`, `d`         |`u`: undirected, `d`: directed|
-|-a| `e`, `a`         |`e`: exact, `a`: approximation|
-|-eps| $\epsilon\ge0$   |error threshold for $1+\epsilon$ approximation algorithms|
-|-red| refer to B1      |method of *graph reduction*|
-|-alloc| refer to B2      |method of `VWU`|
-|-ext| refer to B3      |method of *candidate subgraph extraction*|
-|-ver| refer to B4      |method of *candidate subgraph verification*|
-|-seq| `t`, `f`         |`t`: sequential update strategy, `f`:  simultaneous update strategy|
-|-vw| `t`, `f`         |`t`: transform DDS problem into vertex-weighted UDS problem, `f`: do not transform|
-|-gamma| $0\le\gamma\le1$ |a parameter that controls the lower bound of binary search|
-|-exp| `t`, `f`         |`t`: iteration number grows exponentially, `f`: iteration number is fixed|
-|-it| integer, $it\ge1$|fixed iteration number|
-|-dc| `t`, `f`         |`t`: apply divide-and-conquer strategy, `f`: do not apply|
-|-ra| `t`, `f`         |ablation study on *graph reduction*, `t`: print reduction ratio, `f`: do not print|
-|-res| `t`, `f`         |`t`: restrict $xy-core$ in a tight interval, `f`: do not restrict|
-|-width| $width\ge1$      |a parameter that controls the tightness of interval|
-|-multi| `t`, `f`         |`t`: apply multi-round reduction, `f`: apply single-round reduction|
+"./DensestSubgraph -t d -a a -red appro-xy-core -alloc fista -ext cp -ver cp -dc t -seq t -map t -res t -width 5 -stats t -it 10 -wshrink t -initwcore t -adam t -path ./path/to/your/graph.txt -eps 0.1"
 
-
-#### B1. Methods of *Graph Reduction*
-
-|Value|Description|
-|--------|--------|
-|`k-core`|derive a $k-core$, support UDS algorithms|
-|`stable`|derive a stable set|
-|`exact-xy-core`|derive an exact $xy-core$, support DDS algorithms|
-|`appro-xy-core`|derive an approximate $xy-core$, support DDS algorithms|
-|`w-core`|derive an $w^*-core$, support WCoreApp algorithm|
-
-
-#### B2. Methods of `VWU`
-
-|Value|Description|
-|--------|--------|
-|`flow-exact`|the `VWU` method of `FlowExact`, `CoreExact`, `DFlowExact`, `DCExact`|
-|`fw`|the `VWU` method of `FWExact`, `FWApp`, `DFWExact` and `DFWApp`|
-|`fista`|the `VWU` method of `FISTAExact` and `FISTAApp`|
-|`mwu`|the `VWU` method of `MWUExact` and `MWUApp`|
-|`core-app`|the `VWU` method of `CoreApp`|
-|`greedy`|the `VWU` method of `Greedy` and `DGreedy`|
-|`greedypp`|the `VWU` method of `Greedy++`|
-|`flow-app`|the `VWU` method of `FlowApp`|
-|`xy-core-appro`|the `VWU` method of `XYCoreApp`|
-|`w-core-appro`|the `VWU` method of `WCoreApp`|
-
-
-#### B3. Methods of *Candidate Subgraph Extraction* (`CSE`)
-
-|Value|Description|
-|--------|--------|
-|`flow-exact`|the `CSE` method of `FlowExact`, `CoreExact`, `DFlowExact`, `DCExact`|
-|`cp`|the `CSE` method of `FWExact`, `FWApp`,`FISTAExact` ,`FISTAApp`, `MWUExact`, `MWUApp`, `DFWExact` and `DFWApp`|
-|`core-app`|the `CSE` method of `XYCoreApp` and `WCoreApp`|
-|`greedy`|the `CSE` method of `DGreedy`|
-
-
-#### B4. Methods of *Candidate Subgraph Verification* (`CSV`)
-
-|Value|Description|
-|-------------|--------|
-|`flow-exact`|the `CSV` method of `FlowExact`, `CoreExact`, `DFlowExact`, `DCExact`|
-|`cp`|the `CSV` method of `FWExact`, `FWApp`,`FISTAExact` ,`FISTAApp`, `MWUExact`, `MWUApp`, `DFWExact` and `DFWApp`|
-|`core-app`|the `CSV` method of `CoreApp`|
-|`flow-app`|the `CSV` method of `FlowApp`|
-|`greedy`|the `CSV` method of `DGreedy`|
-
-
+In these parameters, the meaningful ones in our work are:
+- `-t` : type of graph, `d` for directed and `u` for undirected. Here we set it to `d`.
+- `-a` : algorithm type, `a` for approximate and `e` for exact. Here we set it to `a`.
+- `-eps` : the tolerance of the algorithm, which is set to `0` in exact algorithms and different values in approximate algorithms. Here we set it to `0.1`.
+- `-stats` : whether to output the detailed statistics of the algorithm. Here we set it to `t`.
+- `-it` : the fixed iteration number. Here we set it to `10`.
+- `-wshrink` : whether to use the shrinking technique. Here we set it to `t`.
+- `-initwcore` : whether to use the initial w-core density technique. Here we set it to `t`.
+- `-adam` : whether to use the dynamic learning rate technique. Here we set it to `t`.
+- `-path` : the path of the input graph. You should set it to the path of your graph file. 
 
 ### C. Data Download
 
@@ -158,21 +100,19 @@ There are a lot of options for you to conduct a thorough evalution among differe
 You can download the datasets from the following Google driven link:
 
 
-XXXXXXXXXXXXXXXXXX
+
 
 
 ### D. Experimentation
 
+First you should put the graph file into a folder and set the dataset_path and output_path in ./experiments/experiments.py to the path of your graph file and the output folder, respectively. 
 
-Our one-click script for reproducibility is comming soon.
+Then you can run the experiments by using the following command:
 
+```sh
+cd experiments
+python3 experiments.py app_directed_fista.json
+python3 experiments.py exact_directed_fista.json
+```
 
-[//]: # (### E. Contact)
-
-[//]: # ()
-[//]: # ()
-[//]: # (If you have any questions about the code or find any errors, please list them in the `issue` or contact us directly by email:)
-
-[//]: # ()
-[//]: # ()
-[//]: # (`yiyang3@link.cuhk.edu.cn` , `qingshuoguo@link.cuhk.edu.cn` or `yinglizhou@link.cuhk.edu.cn`)
+And you can configure the degree of parallelism in the json file.
