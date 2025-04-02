@@ -63,25 +63,12 @@ make ./DensestSubgraph
 
 ### B. Command Line Parameters
 
-A general command of our program is like:
-
-```sh
-
-./DensestSubgraph [-option1 value1] [-option2 value2] ...
-
-```
-
-For example, you could run `core-exact` on DP in the following command:
-
-```sh
-
-./DensestSubgraph -path ./data/DP.txt -t u -a e -red core-exact -alloc flow-exact -ext flow-exact -ver flow-exact
-
-```
 
 In terms of our work, one could run the code in the following format:
 
-"./DensestSubgraph -t d -a a -red appro-xy-core -alloc fista -ext cp -ver cp -dc t -seq t -map t -res t -width 5 -stats t -it 10 -wshrink t -initwcore t -adam t -path ./path/to/your/graph.txt -eps 0.1"
+```sh
+./DensestSubgraph -t d -a a -red appro-xy-core -alloc fista -ext cp -ver cp -dc t -seq t -map t -res t -width 5 -stats t -it 10 -wshrink t -initwcore t -adam t -path ./path/to/your/graph.txt -eps 0.1
+```
 
 In these parameters, the meaningful ones in our work are:
 - `-t` : type of graph, `d` for directed and `u` for undirected. Here we set it to `d`.
@@ -97,7 +84,7 @@ In these parameters, the meaningful ones in our work are:
 ### C. Data Download
 
 
-You can download the datasets from the following Google driven link:
+You can download the datasets from the following Google drive link:
 
 
 
@@ -107,7 +94,7 @@ You can download the datasets from the following Google driven link:
 
 First you should put the graph file into a folder and set the dataset_path and output_path in ./experiments/experiments.py to the path of your graph file and the output folder, respectively. 
 
-Then you can run the experiments by using the following command:
+Then you can run the experiments for FBAD by using the following command:
 
 ```sh
 cd experiments

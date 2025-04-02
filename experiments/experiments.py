@@ -3,6 +3,7 @@ import sys
 import os
 import multiprocessing
 import time
+import json
 
 current_time = time.strftime("%Y-%m-%d-%H-%M-%S", time.localtime())
 dataset_path = ""
@@ -19,7 +20,6 @@ if len(parameters) == 0:
     print("Please provide the configuration file path")
     exit(1)
 config_file = parameters[0]
-import json
 with open(config_file, "r") as file:
     config = json.load(file)
 name = config["name"]
